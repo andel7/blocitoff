@@ -11,10 +11,25 @@
 
 <div class="container">
 <ul class="nav nav-tabs">
-  <li><a>About</a></li>
-  <li><a>Sign in</a></li>
-  <li><a>Register</a></li>
+  <li><%= link_to "Home", welcome_index_path %></li>
+  <% if !user_signed_in? %>
+        <li><%= link_to "Sign in", new_user_session_path %></li>
+        <li><%= link_to "Register", new_user_registration_path %></li>
+  <% end %>
+  <li><%= link_to "About", welcome_about_path %></li>
+  <li>
+    <% if user_signed_in? %>
+        <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+    <% end %>
+
+  </li>
 </ul>
+  <% if notice %>
+       <p class="alert alert-warning"><%= notice %></p>
+  <% end %>
+  <% if alert %>     
+       <p class="alert alert-danger"><%= alert %></p>
+  <% end %>     
 <%= yield %>
 </div>
 
