@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'welcome/about'
 
   resources :lists, except: [:index] do
-    resources :items, only: [:create]
+    resources :items, only: [:create, :destroy]
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

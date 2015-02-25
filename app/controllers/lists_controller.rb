@@ -2,9 +2,12 @@ class ListsController < ApplicationController
    before_action :authenticate_user! # users must be signed in before any lists_controller method
 
   def show
-     @list = current_user.list
-     @item = Item.new
-     @current_items_in_the_list = @list.items
+    @list = current_user.list
+    if @list 
+        @current_items_in_the_list = @list.items
+        @item = Item.new
+    end
+     
   end
 
 
